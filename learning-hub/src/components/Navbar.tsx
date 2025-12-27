@@ -18,6 +18,7 @@ export default function Navbar({ user, setUser }) {
       <div className="logo">Learning Platform</div>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
+        <li><Link to="/pronunciation">Pronunciation</Link></li>
         <li className="user-menu-container">
           {user ? (
             <>

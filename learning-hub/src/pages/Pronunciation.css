@@ -1,0 +1,17 @@
+.pronunciation-page {
+  display: flex;
+  gap: 20px;
+}
+
+/* Main Content */
+.practice-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}

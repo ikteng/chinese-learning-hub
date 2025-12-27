@@ -1,0 +1,91 @@
+.side-menu-container {
+  position: relative;
+  display: flex;
+}
+
+/* Side Menu */
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  transition: width 0.3s;
+  background-color: var(--color-light-yellow);
+}
+
+.side-menu.collapsed {
+  width: 0px;
+}
+
+/* Side Menu List */
+.side-menu h2 {
+  margin-top: 0;
+  color: var(--color-dark-brown);
+}
+
+.sentence-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.side-menu li {
+  padding: 10px; 
+  border-radius: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: var(--color-brown);
+  width: auto; 
+  white-space: nowrap;
+}
+
+.side-menu li:hover {
+  color: var(--color-yellow);
+  background-color: var(--color-brown);
+}
+
+/* Add Sentence Button */
+.add-sentence-btn {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--color-yellow);
+  color: var(--color-brown);
+  border: 2px solid var(--color-brown);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.add-sentence-btn:hover {
+    background-color: var(--color-dark-yellow);
+    color: var(--color-white);
+}
+
+/* Collapse Button outside the menu */
+.toggle-btn-outside {
+  position: absolute;
+  right: -15px; /* outside the menu */
+  top: 15px;    /* align with title */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--color-secondary);
+  background: var(--color-on-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  z-index: 1;
+}

@@ -1,22 +1,28 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: "Poppins", sans-serif;
+.home-page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3vw;   
+  box-sizing: border-box; 
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .title {
   font-size: 3rem;
   font-weight: 700;
-  color: #5a2d0c;
-  margin-bottom: 20px;
+  color: var(--color-brown);
 }
 
 .subtitle {
   font-size: 1.5rem;
-  font-weight: 400;
-  max-width: 500px;
-  color: #6b3c1f;
+  color: var(--color-dark-brown); 
 }

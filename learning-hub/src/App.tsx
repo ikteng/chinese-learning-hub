@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Pronunciation from "./pages/Pronunciation";
 import { useState } from "react";
 import "./App.css";
 
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/signup" element={<SignUp/>} />
+            <Route path="/pronunciation" element={<Pronunciation/>} />
           </Routes>
         </div>
       </div>

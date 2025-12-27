@@ -3,16 +3,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 25px;
-  background: #5a2d0c;
-  color: #ffe8c5; 
+  background: var(--color-brown); 
   font-family: "Poppins", sans-serif;
-  border-bottom: 2px solid #6b3c1f;
+  border-bottom: 2px solid var(--color-primary-hover); /* slightly darker blue */
 }
 
 .logo {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #ffe8c5;
+  color: var(--color-yellow);
 }
 
 .nav-links {
@@ -24,14 +23,14 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #ffd3a6;
+  color: var(--color-white);
   font-size: 1rem;
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .nav-links a:hover {
-  color: #ffe8c5;
+  color: var(--color-yellow-hover);
   transform: translateY(-1px);
 }
 
@@ -39,7 +38,7 @@
 .user-button {
   background: none;
   border: none;
-  color: #ffd3a6;
+  color: var(--color-accent);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -47,7 +46,7 @@
 }
 
 .user-button:hover {
-  color: #ffe8c5;
+  color: var(--color-hover-accent);
   transform: translateY(-1px);
 }
 
@@ -60,8 +59,8 @@
   position: absolute;
   top: 110%;
   right: 0;
-  background: #5a2d0c;
-  border: 1px solid #6b3c1f;
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary-hover);
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -73,7 +72,7 @@
 
 .dropdown-item {
   padding: 10px 15px;
-  color: #ffd3a6;
+  color: var(--color-accent);
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
@@ -85,6 +84,6 @@
 }
 
 .dropdown-item:hover {
-  background: #6b3c1f;
-  color: #ffe8c5;
+  background: var(--color-primary-hover);
+  color: var(--color-on-primary);
 }

@@ -1,13 +1,32 @@
+:root {
+  /* Primary Colors */
+  --color-brown: #6b3c1f;
+  --color-dark-brown: #5a2d0c;
+  --color-light-yellow: #ffedb7; 
+  --color-yellow: #FFE082; 
+  --color-dark-yellow: #f8cc48; 
+  --color-white: white;
+
+  /* Backgrounds */
+  --color-background-light: #fdfbe4; /* soft neutral page background */
+
+  /* Text Colors */
+  --color-text-main: #333;     /* main dark text */
+  --color-text-secondary: #555; /* secondary text */
+
+  /* Hover / Interaction */
+  --color-yellow-hover: #fff4d2; 
+}
+
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
+  background: var(--color-background-light);
+  color: var(--color-text-main);
 }
 
 .page-content {
   flex: 1;
   display: flex;
-  justify-content: center; 
-  align-items: center;
-  background: linear-gradient(135deg, #ffe8c5, #ffd3a6);
 }
