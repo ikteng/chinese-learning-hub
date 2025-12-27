@@ -1,0 +1,1 @@
+export const REST_HOSTNAME = "http://127.0.0.1:5001"
