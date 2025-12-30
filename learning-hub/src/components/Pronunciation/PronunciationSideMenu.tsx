@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import type { Sentence } from "../../api/SentenceApi";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./PronunciationSideMenu.css";
 
 interface PronunciationSideMenuProps {
-  sentences: string[];
-  onSelect: (sentence: string) => void;
+  sentences: Sentence[];
+  onSelect: (sentence: Sentence) => void;
   onAddSentence: () => void;
 }
 

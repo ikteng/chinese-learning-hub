@@ -15,17 +15,15 @@ export default function App() {
 
   return (
     <Router>
-      <div className="app">
-        <Navbar user={user} setUser={setUser} /> {/* navbar always on top */}
-        <div className="page-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/signup" element={<SignUp/>} />
-            <Route path="/pronunciation" element={<Pronunciation/>} />
-          </Routes>
-        </div>
-      </div>
+      <Navbar user={user} setUser={setUser} />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/signup" element={<SignUp/>} />
+        <Route path="/pronunciation" element={<Pronunciation/>} />
+      </Routes>
+      
     </Router>
   );
 }

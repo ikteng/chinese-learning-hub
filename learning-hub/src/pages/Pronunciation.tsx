@@ -1,67 +1,71 @@
-import React, { useState } from "react";
-import { FaPlay, FaMicrophone } from "react-icons/fa";
-import PronunciationSideMenu from "../components/PronunciationSideMenu";
+import React, { useEffect, useState } from "react";
+import type { Sentence } from "../api/SentenceApi";
+import { SentenceApi } from "../api/SentenceApi";
+import SideMenu from "../components/Pronunciation/PronunciationSideMenu";
+import PracticeArea from "../components/Pronunciation/PronunciationPracticeArea";
+import AddSentenceModal from "../components/Pronunciation/AddSentenceModal";
 import "./Pronunciation.css";
 
 const Pronunciation: React.FC = () => {
   const [sentence, setSentence] = useState("");
-  // const [sentences, setSentences] = useState<string[]>([]);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handlePlay = (text: string) => {
-    if (!text) return;
+  const [sentences, setSentences] = useState<Sentence[]>([]);
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "zh-CN";
-    utterance.onstart = () => setIsPlaying(true);
-    utterance.onend = () => setIsPlaying(false);
+  useEffect(() => {
+    const fetchSentences = async () => {
+      try {
+        const data = await SentenceApi.getAll();
+        setSentences(data);
+      } catch (err) {
+        console.error("Failed to fetch sentences", err);
+      }
+    };
+    fetchSentences();
+  }, []);
 
-    window.speechSynthesis.speak(utterance);
+ const [selectedSentence, setSelectedSentence] = useState<Sentence | null>(null);
+
+  const handleSelectSentence = (sentence: Sentence) => {
+    setSelectedSentence(sentence);
   };
 
-  const handleAddSentence = () => {
-    if (sentence.trim() && !sentences.includes(sentence)) {
-      setSentences([sentence, ...sentences]);
-      setSentence("");
+  const handleAddSentence = async () => {
+    if (!sentence.trim()) return;
+    try {
+      const added = await SentenceApi.add(sentence);
+      setSentences([added, ...sentences]); // update list in parent
+      setSentence(""); // clear modal input
+      setIsModalOpen(false); // close modal
+    } catch (err) {
+      console.error("Failed to add sentence", err);
     }
   };
 
-  const sentences = [
-    "你好，世界",
-    "今天天气很好",
-    "我喜欢学习中文",
-    "请慢慢说",
-    "谢谢你的帮助",
-    "我想练习发音",
-    "今天学习很开心",
-    "明天见",
-    "我会说一点中文",
-    "这个句子很有意思"
-  ];
-
   return (
     <div className="pronunciation-page">
-      <PronunciationSideMenu sentences={sentences} onSelect={handlePlay} />
+      <SideMenu
+        sentences={sentences}
+        onSelect={(sentence: Sentence) => handleSelectSentence(sentence)}
+        onAddSentence={() => setIsModalOpen(true)}
+      />
 
-      <div className="practice-container">
-        <h1>Chinese Speaking Practice</h1>
-        <textarea
-          placeholder="Type a Chinese sentence here..."
-          value={sentence}
-          onChange={(e) => setSentence(e.target.value)}
-          rows={4}
-          cols={50}
-          className="sentence-input"
+      {selectedSentence && (
+        <PracticeArea
+          sentence={sentence || selectedSentence?.text || ""}
+          setSentence={setSentence}
+          handleAddSentence={handleAddSentence}
         />
-        <div className="buttons">
-          <button onClick={() => handlePlay(sentence)} className="play-button">
-            <FaPlay /> Play
-          </button>
-          <button onClick={handleAddSentence} className="record-button">
-            <FaMicrophone /> Add
-          </button>
-        </div>
-      </div>
+      )}
+
+      <AddSentenceModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        sentence={sentence}
+        setSentence={setSentence}
+        onAddSentence={handleAddSentence}
+      />
+
     </div>
   );
 };
