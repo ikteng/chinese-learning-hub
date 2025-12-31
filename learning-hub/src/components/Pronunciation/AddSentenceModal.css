@@ -12,10 +12,28 @@
 }
 
 .modal-content {
-  background: var(--color-background-light);
+  background: var(--color-light-yellow);
   padding: 20px;
   border-radius: 10px;
   min-width: 300px;
+}
+
+.pinyin-audio-row {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.pinyin-field {
+  flex: 1;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.play-button {
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .modal-buttons {
@@ -23,4 +41,14 @@
   justify-content: flex-end;
   gap: 10px;
   margin-top: 10px;
+}
+
+.modal-buttons button {
+  background-color: var(--color-yellow);
+  color: var(--color-brown);
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid var(--color-brown);
+  font-weight: 600;
+  border-radius: 15px;
 }

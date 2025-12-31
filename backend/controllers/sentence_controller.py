@@ -22,4 +22,4 @@ def add_sentence():
     # Supabase insert returns inserted rows in res.data
     inserted = res.data[0] if res and res.data else None
 
-    return jsonify(inserted), 201
+    return jsonify(inserted), 200
