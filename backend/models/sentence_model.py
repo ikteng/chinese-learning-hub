@@ -3,10 +3,11 @@ from config import supabase
 
 class SentenceModel:
     @staticmethod
-    def create_sentence(text: str):
+    def create_sentence(text: str, user_id: str):
         """Insert a new sentence into the database."""
         res = supabase.from_("sentences").insert({
-            "text": text
+            "text": text,
+            "user_id": user_id
         }).execute()
         return res
 

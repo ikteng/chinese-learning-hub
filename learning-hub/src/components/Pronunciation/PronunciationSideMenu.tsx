@@ -24,7 +24,7 @@ const PronunciationSideMenu: React.FC<PronunciationSideMenuProps> = ({ sentences
 
                 {sentences.map((s, index) => (
                   <li key={index} onClick={() => onSelect(s)}>
-                    {s}
+                    {s.text}
                   </li>
                 ))}
               </ul>

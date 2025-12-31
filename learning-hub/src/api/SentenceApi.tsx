@@ -29,7 +29,10 @@ export const SentenceApi = {
   },
 
   add: async (sentence: string): Promise<Sentence> => {
-    const response = await axiosInstance.post("/sentences", { sentence });
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const user_id = user?.id;
+
+    const response = await axiosInstance.post("/sentences", { sentence, user_id });
     return response.data;
   },
 

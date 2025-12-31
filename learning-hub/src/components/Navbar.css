@@ -4,8 +4,6 @@
   align-items: center;
   padding: 15px 25px;
   background: var(--color-brown); 
-  font-family: "Poppins", sans-serif;
-  border-bottom: 2px solid var(--color-primary-hover); /* slightly darker blue */
 }
 
 .logo {
@@ -36,9 +34,10 @@
 
 /* User button */
 .user-button {
+  font-family: "Poppins", sans-serif;
   background: none;
   border: none;
-  color: var(--color-accent);
+  color: var(--color-white);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -46,7 +45,7 @@
 }
 
 .user-button:hover {
-  color: var(--color-hover-accent);
+  color: var(--color-yellow-hover);
   transform: translateY(-1px);
 }
 
@@ -59,8 +58,7 @@
   position: absolute;
   top: 110%;
   right: 0;
-  background: var(--color-primary);
-  border: 1px solid var(--color-primary-hover);
+  background: var(--color-brown);
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -72,7 +70,7 @@
 
 .dropdown-item {
   padding: 10px 15px;
-  color: var(--color-accent);
+  color: var(--color-white);
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
@@ -84,6 +82,5 @@
 }
 
 .dropdown-item:hover {
-  background: var(--color-primary-hover);
-  color: var(--color-on-primary);
+  color: var(--color-yellow-hover);
 }

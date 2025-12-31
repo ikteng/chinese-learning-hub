@@ -12,8 +12,14 @@ def get_sentences():
 def add_sentence():
     data = request.get_json()
     text = data.get("sentence", "").strip()
+    user_id = data.get("user_id")
+
     if not text:
         return jsonify({"error": "Sentence cannot be empty"}), 400
 
-    res = SentenceModel.create_sentence(text)
-    return jsonify({"message": "Sentence added", "sentence": text}), 201
+    res = SentenceModel.create_sentence(text, user_id)
+
+    # Supabase insert returns inserted rows in res.data
+    inserted = res.data[0] if res and res.data else None
+
+    return jsonify(inserted), 201
