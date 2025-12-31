@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -21,7 +22,14 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<SignUp/>} />
-        <Route path="/pronunciation" element={<Pronunciation/>} />
+        <Route
+          path="/pronunciation"
+          element={
+            <ProtectedRoute user={user}>
+              <Pronunciation />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       
     </Router>
