@@ -60,16 +60,16 @@
   cursor: pointer;
   background-color: var(--color-yellow);
   color: var(--color-brown);
-  border: 2px solid var(--color-brown);
-  border-radius: 10px;
+  border: none;
+  border-radius: 15px;
   font-size: 15px;
   font-weight: 600;
   transition: all 0.2s ease;
 }
 
 .add-sentence-btn:hover {
-    background-color: var(--color-dark-yellow);
-    color: var(--color-white);
+  background-color: var(--color-dark-yellow);
+  color: var(--color-white);
 }
 
 .toggle-btn-outside {
