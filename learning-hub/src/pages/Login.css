@@ -39,14 +39,14 @@
 .login-input {
   padding: 10px 15px;
   font-size: 1rem;
-  border: 2px solid var(--color-primary);
+  border: 2px solid var(--color-brown);
   border-radius: 8px;
   outline: none;
   font-family: "Poppins", sans-serif;
 }
 
 .login-input:focus {
-  border-color: var(--color-secondary);
+  border-color: var(--color-dark-brown);
 }
 
 .login-button {
