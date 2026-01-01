@@ -58,13 +58,14 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
 
         {sentence && (
           <div className="pinyin-audio-row">
-            <label htmlFor="pinyin-field" className="pinyin-label">Pinyin:</label>
+            <label htmlFor="pinyin-field" className="pinyin-label" title="Pinyin will be auto-generated from the sentence">Pinyin:</label>
             <input
               id="pinyin-field"
               type="text"
               value={sentencePinyin}
               readOnly
               className="pinyin-field"
+              title="Pinyin will be auto-generated from the sentence"
             />
             <button
               onClick={() => handlePlay(sentence)}
