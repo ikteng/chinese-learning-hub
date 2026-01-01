@@ -12,10 +12,42 @@
 }
 
 .modal-content {
+  position: relative;
   background: var(--color-light-yellow);
   padding: 20px;
   border-radius: 10px;
   min-width: 300px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -10px 0 10px; 
+}
+
+.modal-header h2 {
+  margin: 0px;
+}
+
+.modal-header .close-button {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--color-dark-brown);
+}
+
+.close-button:hover {
+  color: var(--color-brown);
+}
+
+.sentence-label {
+  display: block; 
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--color-dark-brown);
 }
 
 .pinyin-audio-row {
@@ -23,6 +55,12 @@
   align-items: center;
   margin-top: 10px;
   gap: 10px;
+}
+
+.pinyin-label {
+  font-weight: 600;
+  margin-right: 5px;
+  color: var(--color-dark-brown);
 }
 
 .pinyin-field {

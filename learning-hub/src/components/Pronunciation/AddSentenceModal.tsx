@@ -41,9 +41,14 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Add a new sentence</h2>
-
+        <div className="modal-header">
+          <h2>Add a new sentence</h2>
+          <button className="close-button" onClick={onClose}>×</button>
+        </div>
+        
+        <label htmlFor="sentence-field" className="sentence-label">Sentence:</label>
         <textarea
+          id="sentence-field"
           value={sentence}
           onChange={(e) => setSentence(e.target.value)}
           rows={4}
@@ -53,7 +58,9 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
 
         {sentence && (
           <div className="pinyin-audio-row">
+            <label htmlFor="pinyin-field" className="pinyin-label">Pinyin:</label>
             <input
+              id="pinyin-field"
               type="text"
               value={sentencePinyin}
               readOnly
@@ -64,7 +71,7 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
               disabled={isPlaying}
               className="play-button"
             >
-              {isPlaying ? "Playing..." : <SpeakerIcon/>}
+              {isPlaying ? "Playing..." : <SpeakerIcon />}
             </button>
           </div>
         )}
