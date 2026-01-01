@@ -11,6 +11,7 @@ const Pronunciation: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [sentences, setSentences] = useState<Sentence[]>([]);
+  const [isLoadingSentences, setIsLoadingSentences] = useState(true);
 
   useEffect(() => {
     const fetchSentences = async () => {
@@ -19,6 +20,8 @@ const Pronunciation: React.FC = () => {
         setSentences(data);
       } catch (err) {
         console.error("Failed to fetch sentences", err);
+      } finally {
+        setIsLoadingSentences(false);
       }
     };
     fetchSentences();
@@ -46,6 +49,7 @@ const Pronunciation: React.FC = () => {
     <div className="pronunciation-page">
       <SideMenu
         sentences={sentences}
+        isLoading={isLoadingSentences}
         onSelect={(sentence: Sentence) => handleSelectSentence(sentence)}
         onAddSentence={() => setIsModalOpen(true)}
       />
