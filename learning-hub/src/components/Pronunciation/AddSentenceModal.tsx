@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import pinyin from "pinyin";
+import SpeakerIcon from '@mui/icons-material/VolumeUp';
 import "./AddSentenceModal.css";
 
 interface AddSentenceModalProps {
@@ -63,7 +64,7 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
               disabled={isPlaying}
               className="play-button"
             >
-              {isPlaying ? "Playing..." : "🔊"}
+              {isPlaying ? "Playing..." : <SpeakerIcon/>}
             </button>
           </div>
         )}
