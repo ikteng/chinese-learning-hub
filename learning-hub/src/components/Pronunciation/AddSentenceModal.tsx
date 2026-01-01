@@ -18,12 +18,13 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
   setSentence,
   onAddSentence,
 }) => {
+  const isChinese = (text: string) => /[\u4E00-\u9FFF]/.test(text);
   const [isPlaying, setIsPlaying] = useState(false);
 
   if (!isOpen) return null;
 
   // Convert sentence to pinyin
-  const sentencePinyin = sentence
+  const sentencePinyin = isChinese(sentence)
     ? pinyin(sentence, { style: pinyin.STYLE_TONE2 }).flat().join(" ")
     : "";
 
@@ -38,14 +39,19 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
     window.speechSynthesis.speak(utterance);
   };
 
+  const handleClose = () => {
+    setSentence(""); // Clear the sentence
+    onClose();       // Close the modal
+  };
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
         <div className="modal-header">
           <h2>Add a new sentence</h2>
-          <button className="close-button" onClick={onClose}>×</button>
+          <button className="close-button" onClick={handleClose}>×</button>
         </div>
-        
+
         <label htmlFor="sentence-field" className="sentence-label">Sentence:</label>
         <textarea
           id="sentence-field"
@@ -54,7 +60,14 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
           rows={4}
           cols={50}
           placeholder="Type a Chinese sentence here..."
+          className={!isChinese(sentence) && sentence ? "textarea-error" : ""}
         />
+
+        {sentence && !isChinese(sentence) && (
+          <p style={{ color: 'red', marginTop: '5px' }}>
+            Please enter a Chinese sentence.
+          </p>
+        )}
 
         {sentence && (
           <div className="pinyin-audio-row">
@@ -65,21 +78,34 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
               value={sentencePinyin}
               readOnly
               className="pinyin-field"
-              title="Pinyin will be auto-generated from the sentence"
+              title={
+                !isChinese(sentence) && sentence
+                  ? "Enter a Chinese sentence to generate Pinyin"
+                  : "Pinyin will be auto-generated from the sentence"
+              }
             />
+            
             <button
               onClick={() => handlePlay(sentence)}
-              disabled={isPlaying}
+              disabled={isPlaying || !isChinese(sentence)}
               className="play-button"
+              title={!isChinese(sentence) ? "Please enter a Chinese sentence to play audio" : ""}
             >
               {isPlaying ? "Playing..." : <SpeakerIcon />}
             </button>
+
           </div>
         )}
 
         <div className="modal-buttons">
-          <button onClick={onAddSentence}>Add</button>
-          <button onClick={onClose}>Cancel</button>
+          <button
+            onClick={onAddSentence}
+            disabled={!isChinese(sentence)}
+            title={!isChinese(sentence) ? "Please enter a Chinese sentence to add" : ""}
+          >
+            Add
+          </button>
+          <button onClick={handleClose}>Cancel</button>
         </div>
       </div>
     </div>
