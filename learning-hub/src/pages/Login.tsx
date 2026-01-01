@@ -29,8 +29,8 @@ export default function Login({ setUser }) {
         navigate("/"); // redirect to home or dashboard
       }
     } catch (err) {
-      setError("Something went wrong. Please try again.");
-      console.error(err);
+      const backendMessage = err?.response?.data?.error;
+      setError(backendMessage || "Something went wrong, please try again.");
     }
   };
 
@@ -58,7 +58,8 @@ export default function Login({ setUser }) {
               <button type="submit" className="login-button">Log In</button>
             </form>
             
-          {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+          {error && <p className="login-error">{error}</p>}
+          
           <p className="signup-text">
             Don’t have an account? <Link to="/signup" className="signup-link">Sign up now!</Link>
           </p>

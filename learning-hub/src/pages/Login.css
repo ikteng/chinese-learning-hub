@@ -66,6 +66,13 @@
   color: var(--color-white);
 }
 
+.login-error {
+  color: red;
+  font-size: 0.9rem;
+  margin: 15px 0 -10px 0;
+  line-height: 1.2;
+}
+
 .signup-text {
   margin-top: 20px;
   font-size: 0.9rem;
