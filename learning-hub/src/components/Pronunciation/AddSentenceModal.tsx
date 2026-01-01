@@ -28,18 +28,26 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
     ? pinyin(sentence, { style: pinyin.STYLE_TONE2 }).flat().join(" ")
     : "";
 
-  const handlePlay = (text: string) => {
-    if (!text) return;
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "zh-CN";
-    utterance.onstart = () => setIsPlaying(true);
-    utterance.onend = () => setIsPlaying(false);
-
-    window.speechSynthesis.speak(utterance);
+  const handleTogglePlay = () => {
+    if (!isPlaying) {
+      if (!isChinese(sentence)) return;
+      const utterance = new SpeechSynthesisUtterance(sentence);
+      utterance.lang = "zh-CN";
+      utterance.onstart = () => setIsPlaying(true);
+      utterance.onend = () => setIsPlaying(false);
+      window.speechSynthesis.speak(utterance);
+    } else {
+      // Stop currently playing speech
+      window.speechSynthesis.cancel();
+      setIsPlaying(false);
+    }
   };
 
   const handleClose = () => {
+    // Stop any currently playing speech
+    window.speechSynthesis.cancel();
+    setIsPlaying(false);
+
     setSentence(""); // Clear the sentence
     onClose();       // Close the modal
   };
@@ -85,14 +93,18 @@ const AddSentenceModal: React.FC<AddSentenceModalProps> = ({
               }
             />
             
-            <button
-              onClick={() => handlePlay(sentence)}
-              disabled={isPlaying || !isChinese(sentence)}
-              className="play-button"
-              title={!isChinese(sentence) ? "Please enter a Chinese sentence to play audio" : ""}
-            >
-              {isPlaying ? "Playing..." : <SpeakerIcon />}
-            </button>
+            <div className="speaker-section">
+              <button
+                onClick={handleTogglePlay}
+                disabled={!isChinese(sentence)}
+                className={`play-button ${isPlaying ? 'stop-button' : ''}`}
+                title={!isChinese(sentence) ? "Please enter a Chinese sentence to play audio" : ""}
+              >
+                {isPlaying ? "Stop" : <SpeakerIcon />}
+              </button>
+              
+              {isPlaying && <span className="playing-text">Playing...</span>}
+            </div>
 
           </div>
         )}

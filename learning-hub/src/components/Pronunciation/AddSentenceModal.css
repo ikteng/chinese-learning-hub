@@ -71,15 +71,56 @@
   flex: 1;
   padding: 5px;
   font-size: 14px;
+  border-radius: 10px;
+}
+
+.speaker-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 5px 10px;
   cursor: pointer;
+  border: 1px solid var(--color-brown);
+  border-radius: 8px;
+  background-color: var(--color-yellow);
+  color: var(--color-brown);
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.play-button:disabled {
+  background-color: #f0e6b0;
+  color: #a1885c;
+  border-color: #a1885c;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .play-button svg {
   font-size: 16px;
+}
+
+.stop-button {
+  background-color: var(--color-brown);
+  color: var(--color-light-yellow);
+  border-color: var(--color-brown);
+}
+
+.stop-button:hover {
+  background-color: #a1885c;
+  border-color: #a1885c;
+}
+
+.playing-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark-brown);
 }
 
 .modal-buttons {
@@ -96,7 +137,10 @@
   cursor: pointer;
   border: 1px solid var(--color-brown);
   font-weight: 600;
-  border-radius: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-buttons button:disabled {
