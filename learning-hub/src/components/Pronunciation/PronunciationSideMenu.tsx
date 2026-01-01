@@ -20,13 +20,32 @@ const PronunciationSideMenu: React.FC<PronunciationSideMenuProps> = ({ sentences
             <h2>Sentences</h2>
             <div className="sentence-list">
               <ul>
-                {sentences.length === 0 && <li>No sentences added yet</li>}
+                {sentences.length === 0 && (
+                  <li className="no-sentences">No sentences added yet</li>
+                )}
 
-                {sentences.map((s, index) => (
-                  <li key={index} onClick={() => onSelect(s)}>
-                    {s.text}
-                  </li>
-                ))}
+                {[...sentences]
+                  .sort((a, b) => {
+                    const dateA = new Date(a.updated_at ?? a.created_at ?? "").getTime();
+                    const dateB = new Date(b.updated_at ?? b.created_at ?? "").getTime();
+                    return dateB - dateA;
+                  })
+                  .map((s) => {
+                    const truncatedText =
+                      s.text.length > 22 ? s.text.slice(0, 22) + "..." : s.text;
+
+                    return (
+                      <li key={s.id} onClick={() => onSelect(s)}>
+                        <span className="sentence-text">{truncatedText}</span>
+                        {s.updated_at && (
+                          <small className="sentence-date">
+                            {new Date(s.updated_at).toLocaleDateString()}
+                          </small>
+                        )}
+                      </li>
+                    );
+                  })}
+
               </ul>
             </div>
 

@@ -4,6 +4,9 @@ import { REST_HOSTNAME } from "../Config";
 export type Sentence = {
   id?: number;
   text: string;
+  user_id?: string;
+  created_at?: string;
+  updated_at?: string;
 };
 
 const axiosInstance = axios.create({
